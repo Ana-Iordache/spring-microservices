@@ -67,6 +67,31 @@
         <dependency>
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-spring-boot2</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
+        <!--to assign an unique ID to each request in order to trace a request across multiple microservices
+        as the request goes across multiple microservices the ID is maintained and the info is sent out
+        to the tracing server using that specific ID-->
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-observation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-brave</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.reporter2</groupId>
+            <artifactId>zipkin-reporter-brave</artifactId>
+        </dependency>
+
+        <!--to ensure that even if the distributed tracing server is down
+        the microservices can keep sending messages to Rabbit MQ (which is an intermediate between microservices and tracing server)-->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>
